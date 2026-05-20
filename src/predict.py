@@ -16,12 +16,13 @@ def predict(text):
 
     logits=outputs.logits
     probs=F.softmax(logits, dim=1)
-    
+        
     predicted_class=torch.argmax(logits).item()
     confidence=probs[0][predicted_class].item()
     label= "REAL" if predicted_class==1 else "FAKE"
 
     return label, round(confidence*100, 2)
 
-text="Breaking: Study shows vaccines cause autism worldwide"
-print(predict(text))
+print(predict("The Indian government announced a new policy to improve digital education infrastructure across rural areas."))
+print(predict("Scientists confirm that humans can now breathe underwater without any equipment after a new discovery."))
+print(predict("Experts warn that excessive social media use may be linked to declining attention spans in teenagers."))
